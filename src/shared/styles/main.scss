@@ -1,0 +1,21 @@
+@import 'utilities/variables';
+@import 'utilities/functions';
+@import 'utilities/mixins';
+
+@import 'base/reset';
+// @import 'base/typography';
+
+@import 'layout/header';
+@import 'layout/footer';
+
+@import 'components/buttons';
+@import 'components/search';
+@import 'components/titleSearch';
+@import 'components/cartItem';
+@import 'components/pagination';
+@import 'components/cartTopProject';
+@import 'components/banner';
+
+@import 'pages/home';
+
+@import 'themes/theme';

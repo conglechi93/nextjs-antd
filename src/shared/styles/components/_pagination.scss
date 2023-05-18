@@ -1,0 +1,35 @@
+.pagination {
+  margin: 2rem 0;
+
+  li {
+    color: #6C6868;
+    font-weight: 500;
+    width: 35px;
+    min-width: 35px !important;
+    height: 35px !important;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50% !important;
+    cursor: pointer;
+    box-shadow: none;
+    border: none;
+
+    &.ant-pagination-item-active {
+      background-color: $color-main;
+      border: none;
+
+      a {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100%;
+        color: $color-white;
+      }
+    }
+  }
+
+  .ant-pagination-options {
+    display: none;
+  }
+}

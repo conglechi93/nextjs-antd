@@ -14,6 +14,7 @@ import {useStore} from '../redux/store'; // Client-side cache, shared for the wh
 
 import '../@crema/services/index';
 import '../shared/vendors/index.css';
+import '../shared/styles/main.scss';
 import AppPageMeta from '../@crema/core/AppPageMeta';
 
 // Client-side cache, shared for the whole session of the user in the browser.

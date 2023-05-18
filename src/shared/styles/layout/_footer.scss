@@ -1,0 +1,141 @@
+.footer {
+  background-image: url('../../../assets/img/Background.jpg');
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  padding: 33px 0;
+  color: $color-white;
+
+  &-main-top {
+    border-bottom: 1px solid $color-border;
+    padding-bottom: 15px;
+    margin-bottom: 20px;
+
+    .social-footer {
+      justify-content: flex-end;
+
+      p {
+        font-size: 16px;
+      }
+
+      img {
+        margin-left: 8px;
+      }
+    }
+  }
+
+  &-main-middle {
+    border-bottom: 1px solid #BDBDBD;
+    margin-bottom: 33px;
+    display: grid !important;
+    grid-template-columns: 2fr 1fr 1fr 1fr 2fr;
+    gap: 1.5rem;
+
+    @media screen and (max-width: 992px) {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+
+    .email-form {
+      margin-bottom: 1rem;
+      display: flex;
+      position: relative;
+
+      .ant-form-item {
+        margin-bottom: 0 !important;
+      }
+
+      .input-email {
+        width: 100%;
+        background: #FFFFFF;
+        border: 0.5px solid #BDBDBD;
+        border-radius: 8px;
+        height: 48px;
+        box-shadow: none;
+        outline: none;
+        padding: 10px;
+
+        input {
+          border: none;
+          background-color: transparent;
+          width: 100%;
+          outline: none;
+          box-shadow: none;
+          padding: 0;
+          height: 100%;
+        }
+      }
+
+      button {
+        position: absolute;
+        border: none;
+        padding: 0;
+        height: 48px;
+        background: none;
+        right: 18px;
+        top: 3px;
+      }
+    }
+  }
+
+
+
+  .footer-title {
+    font-size: 15px;
+    line-height: 28px;
+    margin-bottom: 12px;
+    text-transform: uppercase;
+  }
+
+  p {
+    margin-bottom: 10px;
+  }
+
+  ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+
+    li {
+      border: none;
+      padding: 12px 0;
+      border-bottom: none !important;
+      display: flex;
+      align-items: center;
+      color: $color-white !important;
+      font-size: 14px;
+
+      a {
+        color: $color-white;
+      }
+
+      img {
+        margin-right: 10px;
+      }
+    }
+  }
+
+  .downlaod-app {
+    img {
+      margin-right: 10px;
+    }
+  }
+
+  .copy-right {
+    ul {
+      display: flex;
+      align-items: center;
+
+      li {
+        padding: 0 !important;
+
+        &:not(:last-child) {
+          margin-right: 1rem;
+          border-right: 1px solid $color-white;
+          padding-right: 1rem !important;
+        }
+      }
+    }
+  }
+}
