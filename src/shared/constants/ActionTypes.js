@@ -144,3 +144,9 @@ export const UPDATE_CUSTOM_DATA = 'update_custom_data';
 
 // GALLERY
 export const GET_GALLERY_PHOTO = 'get_gallery_photo';
+
+// ALL CATEGORIES
+export const FETCH_CATEGORIES_REQUEST = 'fetch_categories_request';
+
+// PROVINCE
+export const FETCH_PROVINCES_REQUEST = 'fetch_provinces_request';

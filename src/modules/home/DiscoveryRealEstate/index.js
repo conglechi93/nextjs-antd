@@ -21,7 +21,7 @@ const DiscoveryRealEstate = () => {
             </h2>
           </div>
           <div className='discovery-list d-grid'>
-            {realEstate.map((item, index) => {
+            {realEstate?.map((item, index) => {
               return (
                 <div key={index} className={`item item-${index}`}>
                   <a href='#'>

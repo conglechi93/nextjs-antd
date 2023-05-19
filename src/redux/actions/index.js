@@ -9,3 +9,5 @@ export * from './MailApp';
 export * from './ToDoApp';
 export * from './Wall';
 export * from './UserList';
+export * from './AllCategories';
+export * from './Provinces';

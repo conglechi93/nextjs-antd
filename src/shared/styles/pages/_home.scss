@@ -85,6 +85,42 @@
   }
 }
 
+/* Project For you */
+.var-section-tab {
+  position: relative;
+
+  .var-section-tab-inner {
+    .ant-tabs-nav {
+      width: 88%;
+    }
+
+    .ant-tabs-nav-wrap {
+      width: 100%;
+
+      &::after {
+        box-shadow: none;
+      }
+    }
+  }
+
+
+
+  .text-readmore {
+    display: flex;
+    text-align: right;
+    height: 46px;
+    align-items: center;
+    justify-content: flex-end;
+    position: absolute;
+    right: 0;
+
+    svg {
+      margin-left: 8px;
+    }
+  }
+}
+
+
 /* recommend*/
 .recommend-estate {
   &-inner {
@@ -96,6 +132,7 @@
         width: 100%;
         margin: 0 auto;
         gap: 16px;
+        background-color: $color-white;
       }
 
       &-top {
@@ -127,6 +164,18 @@
 
       &:hover {
         background-color: #fbf0f2;
+      }
+    }
+
+    &.hide {
+      display: none;
+    }
+
+    .btn-readmore {
+      display: none;
+
+      &.hide {
+        display: block;
       }
     }
   }

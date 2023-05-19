@@ -10,6 +10,8 @@ import Ecommerce from './Ecommerce';
 import ChatApp from './ChatApp';
 import Wall from './Wall';
 import UserList from './UserList';
+import AllCategories from './AllCategories';
+import Provinces from './Provinces';
 
 const reducers = combineReducers({
   settings: Settings,
@@ -23,5 +25,7 @@ const reducers = combineReducers({
   ecommerce: Ecommerce,
   chatApp: ChatApp,
   wall: Wall,
+  categories: AllCategories,
+  provinces: Provinces,
 });
 export default reducers;

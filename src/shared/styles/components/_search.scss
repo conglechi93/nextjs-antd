@@ -1,74 +1,79 @@
-.search-header {
-  position: relative;
-  gap: 16px;
+.action-search {
+  border-bottom: 0.5px solid $color-border;
   padding: 16px 0;
+  margin-bottom: 16px;
 
-  .ant-select,
-  .ant-input-search {
-    width: 100% !important;
-  }
+  .search-header {
+    position: relative;
+    gap: 16px;
 
-  .ant-select-selector,
-  .ant-input-search {
-    height: 46px !important;
-    background: $color-white;
-    border: 0.5px solid $color-border !important;
-    border-radius: 8px;
-    color: $color-black;
-    font-size: 14px;
-    line-height: 20px;
-    font-weight: 400;
-    padding: 12px !important;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-  }
-
-  .ant-input-search {
-
-    input,
-    button {
-      border: none;
-      box-shadow: none;
-    }
-  }
-
-  .box-post-type,
-  .box-subtype,
-  .box-location,
-  .box-prices {
-    width: 15%;
-  }
-
-  .box-search {
-    width: 25%;
-    flex: auto;
-  }
-
-  .box-all,
-  .box-views {
-    width: 10%;
-  }
-
-  .box-views {
-    .list-product {
-      margin-right: 8px;
+    .ant-select,
+    .ant-input-search {
+      width: 100% !important;
     }
 
-    .product-view {
-      width: 50%;
-      text-align: center;
+    .ant-select-selector,
+    .ant-input-search {
+      height: 46px !important;
+      background: $color-white;
+      border: 0.5px solid $color-border !important;
       border-radius: 8px;
-      height: 46px;
-      padding: 12px;
-      background-color: #F5F5F5;
+      color: $color-black;
+      font-size: 14px;
+      line-height: 20px;
+      font-weight: 400;
+      padding: 12px !important;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+    }
 
-      &.active {
-        background-color: #fbf0f2;
-        pointer-events: none;
+    .ant-input-search {
 
-        path {
-          fill: $color-main;
+      input,
+      button {
+        border: none;
+        box-shadow: none;
+      }
+    }
+
+    .box-post-type,
+    .box-subtype,
+    .box-location,
+    .box-prices {
+      width: 15%;
+    }
+
+    .box-search {
+      width: 25%;
+      flex: auto;
+    }
+
+    .box-all,
+    .box-views {
+      width: 10%;
+    }
+
+    .box-views {
+      .list-product {
+        margin-right: 8px;
+      }
+
+      .product-view {
+        width: 50%;
+        text-align: center;
+        border-radius: 8px;
+        height: 46px;
+        padding: 12px;
+        background-color: #F5F5F5;
+
+        &.active {
+          background-color: #fbf0f2;
+          pointer-events: none;
+
+          path {
+            fill: $color-main;
+          }
         }
       }
     }

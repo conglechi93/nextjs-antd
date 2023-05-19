@@ -1,4 +1,5 @@
 import React from 'react';
+import FormSearch from './FormSearch';
 
 const Banner = () => {
   return (
@@ -15,6 +16,7 @@ const Banner = () => {
             type='video/mp4'
           ></source>
         </video>
+        <FormSearch />
       </section>
     </>
   );

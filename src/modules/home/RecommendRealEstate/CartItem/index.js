@@ -4,6 +4,14 @@ import PropTypes from 'prop-types';
 const CartItem = (props) => {
   // const item = props.item;
   const {item} = props;
+  let styleStatus = '';
+  if (item.reStatus?.name == 'Sắp mở bán') {
+    styleStatus = 'open-sale';
+  } else if (item.reStatus?.name == 'Đang mở bán') {
+    styleStatus = 'one-sale';
+  } else {
+    styleStatus = 'handed-over';
+  }
   return (
     <>
       <div className='col-item' data-post={item.id} id={item.id}>
@@ -57,8 +65,14 @@ const CartItem = (props) => {
             </a>
             <div className='col-item-price d-flex justify-between align-center'>
               <div className='price main-co'>{item.priceText}</div>
-              <div className='info-tab d-none handed-over'>
-                <div className='btn btn-ins'>6 hours ago</div>
+              <div
+                className={`info-tab ${
+                  item.postType?.code == 'du-an'
+                    ? styleStatus
+                    : 'd-none handed-over'
+                }`}
+              >
+                <div className='btn btn-ins'>{item.reStatus?.name}</div>
               </div>
             </div>
             <ul className='col-item-time d-flex align-center justify-between info-time-bds'>
@@ -74,7 +88,11 @@ const CartItem = (props) => {
                   {item.totalApartment ? item.totalApartment : '--'} căn
                 </span>
               </li>
-              <li className='area '>
+              <li
+                className={`area ${
+                  item.postType?.code == 'du-an' ? 'd-none' : ''
+                }`}
+              >
                 <span>
                   Hướng {item.direction?.name ? item.direction?.name : '--'}
                 </span>
@@ -84,12 +102,20 @@ const CartItem = (props) => {
                   item.postType?.code == 'du-an' ? '' : 'd-none'
                 }`}
               >
-                <span>--</span>
+                <span>{item.postDate ? item.postDate : '--'}</span>
               </li>
-              <li className='area '>
+              <li
+                className={`area ${
+                  item.postType?.code == 'du-an' ? 'd-none' : ''
+                }`}
+              >
                 <span>{item.bedroom ? item.bedroom : '--'} PN</span>
               </li>
-              <li className='area '>
+              <li
+                className={`area ${
+                  item.postType?.code == 'du-an' ? 'd-none' : ''
+                }`}
+              >
                 <span>{item.bathroom ? item.bathroom : '--'} WC</span>
               </li>
             </ul>

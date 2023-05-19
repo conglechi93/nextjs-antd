@@ -23,7 +23,7 @@ const DefaultLayout = ({children}) => {
       })}
     >
       <DefaultLayoutWrapper
-        className={clsx('defaultLayoutWrapper', {
+        className={clsx('defaultLayoutWrapper app-land', {
           appMainFooter: footer && footerType === 'fluid',
           appMainFixedFooter: footer && footerType === 'fixed',
           appMainFixedHeader: headerType === 'fixed',

@@ -5,26 +5,22 @@ import {Col, Row} from 'antd';
 
 const RecommendRealEstate = () => {
   const [recommenEstate, setRecommenEstate] = useState([]);
-  const [currentPage, setCurrentPage] = useState(4);
+  const [currentPage, setCurrentPage] = useState(1);
   const [isReload, setIsReload] = useState(true);
+  const [className, setClassName] = useState('');
 
-  let numberShow = 0;
-  let pageKey = 1;
-  const handleOnClick = (e) => {
-    const scrollBtn = document.querySelector('#scroll-to');
-    numberShow = ++numberShow;
-    let pageNum = ++pageKey;
-    if (numberShow == 5) {
-      scrollBtn.classList.add('hide');
-    } else {
-      scrollBtn.classList.remove('hide');
-    }
+  const handleOnClick = () => {
+    setCurrentPage((pre) => pre + 1);
+    setIsReload(true);
+    setClassName(currentPage == 6 ? ' hide' : '');
   };
   useEffect(() => {
     const fetchAPI = async () => {
       const page = currentPage;
       const resultData = await fetchRecommendRealEstate({page});
-      setRecommenEstate(resultData.data.elements);
+      const resultElement = resultData?.data?.elements ?? [];
+      const newRecommenEstate = [...recommenEstate, ...resultElement];
+      setRecommenEstate(newRecommenEstate);
     };
     if (isReload) {
       fetchAPI();
@@ -52,10 +48,16 @@ const RecommendRealEstate = () => {
                 );
               })}
             </Row>
-            <div className='d-flex flex-column align-center' id='scroll-to'>
+            <div
+              className={'d-flex flex-column align-center' + className}
+              id='scroll-to'
+            >
               <div className='main-co text-center' onClick={handleOnClick}>
                 Xem nhiều hơn
               </div>
+              <a href='/bds-ban' className={'main-co btn-readmore' + className}>
+                Xem tất cả
+              </a>
             </div>
           </div>
         </div>

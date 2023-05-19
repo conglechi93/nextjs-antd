@@ -38,7 +38,7 @@ const ProjectHighlight = () => {
             </a>
           </div>
           <div className='project-highlight-list'>
-            {topProject.map((item) => (
+            {topProject?.map((item) => (
               <Card
                 key={item.id}
                 className='cart-item overflow-hidden position-relative'
