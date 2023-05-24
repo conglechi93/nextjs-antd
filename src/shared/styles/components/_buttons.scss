@@ -3,3 +3,16 @@
   font-size: 14px;
   font-weight: 700;
 }
+
+.btn-readmore {
+  padding: 12px 24px;
+  border: 0.5px solid #F0808E;
+  border-radius: 22px;
+  transition: .3s ease;
+
+  &:hover {
+    background-color: $color-main;
+    color: $color-white;
+    border-color: $color-main;
+  }
+}

@@ -1,61 +1,101 @@
-import React, {useState} from 'react';
-import {Button, Checkbox, Form, Input, Radio} from 'antd';
-const CheckboxGroup = Checkbox.Group;
-const plainOptions = ['Apple', 'Pear', 'Orange'];
-const defaultCheckedList = [];
+import React, {useState, useEffect} from 'react';
+import {Button, Form} from 'antd';
+import FormHeader from './FormHeader';
+import FormPostType from './FormPostType';
+import FormLocation from './FormLocation';
+import FormPrice from './FormPrice';
+import FormArea from './FormArea';
+import FormDirection from './FormDirection';
+import FormBedroom from './FormBedroom';
+import FormProject from './FormProject';
+import FormPoster from './FormPoster';
+import PropTypes from 'prop-types';
 
-const FilterModal = () => {
-  const [checkedList, setCheckedList] = useState(defaultCheckedList);
+const FilterModal = ({
+  dataObject,
+  setDataObject,
+  setIsReload,
+  setModal2Open,
+}) => {
+  const [postType, setPostType] = useState('bds-ban');
+  const [className, setClassName] = useState(false);
+
   const [form] = Form.useForm();
-
-  const onChange = (list) => {
-    setCheckedList(list);
-  };
   const onReset = () => {
     form.resetFields();
   };
+  const onChangeForm = () => {
+    setClassName(true);
+  };
+  const onSubmit = () => {
+    setIsReload(true);
+    setModal2Open(false);
+  };
+
   return (
     <>
       <div className='all-filter'>
         <div className='all-filter--inner'>
-          <Form id='form-filter'>
-            <div className='filter-form-input'>
-              <Radio.Group defaultValue='bds-ban' buttonStyle='solid'>
-                <Radio.Button value='bds-ban'>Mua bán</Radio.Button>
-                <Radio.Button value='bds-cho-thue'>Cho thuê</Radio.Button>
-                <Radio.Button value='m-a'>M&A</Radio.Button>
-                <Radio.Button value='du-an'>Dự án</Radio.Button>
-              </Radio.Group>
-            </div>
-            <div className='filter-content'>
-              <div className='filter-box'>
-                <h4>Loại bất động sản</h4>
-                <div className='type_bds_tab form-check-group d-grid g-template-3 g-template-2 gap-10'>
-                  <CheckboxGroup
-                    options={plainOptions}
-                    value={checkedList}
-                    onChange={onChange}
-                  />
-                </div>
-              </div>
+          <Form className='filter-form' onChange={onChangeForm}>
+            <FormHeader
+              setPostType={setPostType}
+              dataObject={dataObject}
+              setDataObject={setDataObject}
+            />
+            <div className='filter-form-content'>
+              <FormPostType
+                postType={postType}
+                dataObject={dataObject}
+                setDataObject={setDataObject}
+              />
               {/* Location */}
-              <div className='filter-box'>
-                <h4>Khu vực</h4>
-                <div className='type_bds_tab form-check-group d-grid g-template-3 g-template-2 gap-10'>
-                  <CheckboxGroup
-                    options={plainOptions}
-                    value={checkedList}
-                    onChange={onChange}
-                  />
-                </div>
+              <FormLocation
+                dataObject={dataObject}
+                setDataObject={setDataObject}
+              />
+              {/* Price and area*/}
+              <div className='filter-box d-grid grid-template-2 gap-20'>
+                <FormPrice
+                  dataObject={dataObject}
+                  setDataObject={setDataObject}
+                />
+                <FormArea
+                  dataObject={dataObject}
+                  setDataObject={setDataObject}
+                />
               </div>
+              {/* Direction */}
+              <FormDirection
+                dataObject={dataObject}
+                setDataObject={setDataObject}
+              />
+              {/* Bedroom */}
+              <FormBedroom
+                dataObject={dataObject}
+                setDataObject={setDataObject}
+              />
+              {/* Poster */}
+              <FormPoster
+                dataObject={dataObject}
+                setDataObject={setDataObject}
+              />
+              {/* Project */}
+              <FormProject
+                dataObject={dataObject}
+                setDataObject={setDataObject}
+              />
             </div>
-            <Form.Item>
-              <Button htmlType='button' onClick={onReset}>
-                Reset
+            <Form.Item className='filter-box-footer'>
+              <Button className='btn-reset' htmlType='button' onClick={onReset}>
+                Đặt lại
               </Button>
-              <Button type='primary' htmlType='submit'>
-                Submit
+              <Button
+                className={`btn-apply ${className ? 'active' : ''}`}
+                type='primary'
+                htmlType='submit'
+                onClick={onSubmit}
+              >
+                Áp dụng
               </Button>
             </Form.Item>
           </Form>
@@ -66,3 +106,9 @@ const FilterModal = () => {
 };
 
 export default FilterModal;
+FilterModal.propTypes = {
+  setIsReload: PropTypes.func,
+  dataObject: PropTypes.any,
+  setDataObject: PropTypes.func,
+  setModal2Open: PropTypes.any,
+};

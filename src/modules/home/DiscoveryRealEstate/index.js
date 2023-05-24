@@ -1,8 +1,10 @@
 import {fetchDiscoveryRealEstate} from 'pages/api/discoveryRealEstate';
 import React, {useState, useEffect} from 'react';
+import background from '../../../assets/img/banner-rent.png';
 
 const DiscoveryRealEstate = () => {
   const [realEstate, setRealEstate] = useState([]);
+  const [realSplice, setRealSplice] = useState([]);
   useEffect(() => {
     const fetchAPI = async () => {
       const resultData = await fetchDiscoveryRealEstate();
@@ -11,14 +13,27 @@ const DiscoveryRealEstate = () => {
     fetchAPI();
   }, []);
 
+  useEffect(() => {
+    const realSplice = realEstate.splice(1, 5);
+    setRealSplice(realSplice);
+  }, []);
+
+  console.log(realSplice);
   return (
     <>
-      <section className='discovery mb-24'>
+      <section
+        className='discovery mb-42 bg-image p-42'
+        style={{backgroundImage: `url(${background.src})`}}
+      >
         <div className='container'>
           <div className='section-vars-title d-flex justify-between align-center flex-wrap'>
-            <h2 className='vars-title mb-0'>
-              NHÀ BÁN TẠI CÁC TỈNH/ THÀNH PHỐ LỚN
-            </h2>
+            <h3>NHÀ BÁN TẠI CÁC TỈNH/ THÀNH PHỐ LỚN</h3>
+            <a
+              href='/du-an'
+              className='main-co btn-readmore d-flex align-center'
+            >
+              <span>Xem thêm</span>
+            </a>
           </div>
           <div className='discovery-list d-grid'>
             {realEstate?.map((item, index) => {

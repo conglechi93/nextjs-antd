@@ -33,7 +33,7 @@ const RecommendRealEstate = () => {
       <section className='recommend-estate mb-24'>
         <div className='container'>
           <div className='section-vars-title d-flex justify-between align-center flex-wrap'>
-            <h2 className='vars-title mb-0'>BẤT ĐỘNG SẢN DÀNH CHO BẠN</h2>
+            <h3 className='mb-0'>BẤT ĐỘNG SẢN DÀNH CHO BẠN</h3>
           </div>
           <div className='recommend-estate-list'>
             <Row
@@ -52,10 +52,38 @@ const RecommendRealEstate = () => {
               className={'d-flex flex-column align-center' + className}
               id='scroll-to'
             >
-              <div className='main-co text-center' onClick={handleOnClick}>
+              <div
+                className='main-co text-center d-flex align-center btn-readmore'
+                onClick={handleOnClick}
+              >
                 Xem nhiều hơn
+                <svg
+                  width='21'
+                  height='20'
+                  viewBox='0 0 21 20'
+                  fill='none'
+                  xmlns='http://www.w3.org/2000/svg'
+                >
+                  <path
+                    d='M16.3332 9.16602L10.4998 14.166L4.6665 9.16602'
+                    stroke='#D1132A'
+                    strokeWidth='1.5'
+                    strokeLinecap='round'
+                    strokeLinejoin='round'
+                  />
+                  <path
+                    d='M16.3332 5.83398L10.4998 10.834L4.6665 5.83398'
+                    stroke='#D1132A'
+                    strokeWidth='1.5'
+                    strokeLinecap='round'
+                    strokeLinejoin='round'
+                  />
+                </svg>
               </div>
-              <a href='/bds-ban' className={'main-co btn-readmore' + className}>
+              <a
+                href='/bds-ban'
+                className={'main-co btn-hide btn-readmore' + className}
+              >
                 Xem tất cả
               </a>
             </div>

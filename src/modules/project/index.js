@@ -6,6 +6,10 @@ import TitleSearch from './TitleSearch';
 import BoxItem from './BoxItem';
 import {fetchSearchPost} from 'pages/api/searchPost';
 import Paginations from './Paginations';
+import {fetchAllCategories} from 'redux/actions/AllCategories';
+import {fetchProvinces} from 'redux/actions/Provinces';
+import {useDispatch} from 'react-redux';
+
 const Project = () => {
   const [classNameActive, setClassNameActive] = useState(true);
   const [itemPost, setItemPost] = useState([]);
@@ -17,7 +21,7 @@ const Project = () => {
   const [isReload, setIsReload] = useState(true);
   const [dataObject, setDataObject] = useState({
     page: 1,
-    types: 'du-an',
+    types: 'bds-ban',
     subTypes: '',
     provinces: '',
     districts: '',
@@ -27,11 +31,20 @@ const Project = () => {
     areaFrom: '',
     areaTo: '',
     directions: '',
+    bedrooms: '',
     investors: '',
+    postBy: '',
+    projects: '',
     searchText: '',
     sortBy: 'newest',
     pageSize: 12,
   });
+
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(fetchAllCategories());
+    dispatch(fetchProvinces());
+  }, []);
 
   useEffect(() => {
     const fetchAPI = async () => {
@@ -47,6 +60,15 @@ const Project = () => {
     }
   }, [isReload]);
 
+  // Handle On Change Params
+  const onChangeSearchParam = (objectParams) => {
+    const newDataObject = {
+      ...dataObject,
+      ...objectParams,
+    };
+    setDataObject(newDataObject);
+  };
+
   return (
     <>
       <div className={`search ${classNameActive ? 'active' : ''}`}>
@@ -54,6 +76,7 @@ const Project = () => {
           <title>Vars - Bất động sản</title>
         </Head>
         <HeaderSearch
+          onChangeSearchParam={onChangeSearchParam}
           dataObject={dataObject}
           setDataObject={setDataObject}
           setIsReload={setIsReload}

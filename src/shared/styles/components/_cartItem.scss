@@ -3,6 +3,16 @@
     .ant-col {
       flex: 0 0 50%;
       max-width: 50%;
+
+      .col-item {
+        h5 {
+          width: 85%;
+        }
+
+        .fav-btn {
+          right: 2%;
+        }
+      }
     }
 
     .col-item {
@@ -56,6 +66,7 @@
       width: 100%;
       object-fit: cover;
       border-radius: 12px;
+      display: block;
     }
   }
 

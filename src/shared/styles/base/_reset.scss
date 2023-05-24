@@ -1,14 +1,30 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
 * {
   padding: 0;
   margin: 0;
   box-sizing: border-box;
 }
 
-body {
+body,
+html {
   font-family: 'Inter', sans-serif !important;
+}
+
+body {
   font-size: 14px !important;
   line-height: 20px !important;
   background-color: $color-white !important;
+}
+
+:global(body) {
+  font-family: 'Inter', sans-serif !important;
+}
+
+:where(.css-dev-only-do-not-override-15rg2km)[class^="ant-row"],
+:where(.css-dev-only-do-not-override-15rg2km)[class*=" ant-row"],
+:where(.css-dev-only-do-not-override-15rg2km).ant-select-single .ant-select-selector {
+  font-family: 'Inter', sans-serif !important;
 }
 
 a {

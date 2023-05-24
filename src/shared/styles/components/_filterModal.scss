@@ -1,0 +1,253 @@
+.filter-form {
+  &-type {
+    background: #f5f5f5;
+    border-radius: 60px;
+
+    label {
+      width: 50%;
+      height: 36px;
+      line-height: 34px;
+      border: none;
+      background: #f5f5f5;
+      border-radius: 60px;
+      color: #6c6868;
+
+      &:hover {
+        color: $color-main;
+      }
+
+      &.ant-radio-button-wrapper-checked {
+        background: $color-main !important;
+        border-color: $color-main !important;
+        border-radius: 60px;
+      }
+
+      &::before {
+        display: none !important;
+      }
+
+      &:first-child {
+        border: none !important;
+        border-start-start-radius: 60px;
+        border-end-start-radius: 60px;
+      }
+
+      &:last-child {
+        border-start-end-radius: 60px;
+        border-end-end-radius: 60px;
+      }
+    }
+  }
+
+  &-content {
+    padding: 12px 0;
+
+    .filter-box {
+      margin-bottom: 16px;
+
+      .ant-checkbox-wrapper {
+        display: flex;
+        align-items: center;
+
+        &:hover {
+          .ant-checkbox::after {
+            border: none;
+          }
+
+          .ant-checkbox-inner {
+            background-color: rgba(88, 85, 85, 0.2) !important;
+            border: none;
+          }
+        }
+      }
+
+      .ant-checkbox {
+        position: relative;
+        top: -3px;
+
+        .ant-checkbox-inner {
+          height: 22px;
+          width: 22px;
+          background-color: rgba(88, 85, 85, 0.2);
+          border: none;
+
+          &::after {
+            left: 6px;
+          }
+        }
+
+        &.ant-checkbox-checked {
+          .ant-checkbox-inner {
+            background-color: $color-main;
+            border: none;
+          }
+        }
+      }
+
+      .ant-select {
+        &:hover {
+          .ant-select-selector {
+            border-color: $color-border !important;
+            box-shadow: none;
+          }
+        }
+      }
+
+      .ant-select-selector {
+        border: 0.5px solid $color-border;
+        border-radius: 8px;
+        padding: 6px 8px;
+        outline: none;
+        box-shadow: none;
+
+        .ant-select-selection-item-content {
+          font-size: 12px;
+        }
+      }
+
+      .ant-slider {
+        &-rail {
+          top: 7px;
+        }
+
+        &-track {
+          background-color: $color-main;
+          top: 7px;
+        }
+
+        &-step {
+          top: 7px;
+        }
+
+        &-handle {
+          width: 15px;
+          height: 15px;
+
+          &::before {
+            width: 15px;
+            height: 15px;
+          }
+
+          &::after {
+            width: 15px;
+            height: 15px;
+            box-shadow: 0 0 0 2px $color-main;
+            inset-block-start: 0 !important;
+            inset-inline-start: 0 !important;
+          }
+        }
+      }
+
+      &-bedroom {
+        .ant-checkbox-wrapper {
+          .ant-checkbox {
+            opacity: 0;
+            cursor: pointer;
+            height: 0;
+            width: 0;
+
+            &+span {
+              width: 100%;
+              display: block;
+              padding: 6px 8px;
+              border: 0.5px solid $color-border;
+              border-radius: 8px;
+              text-align: center;
+              cursor: pointer;
+            }
+          }
+
+          &-checked {
+            .ant-checkbox {
+              &+span {
+                background-color: $color-main;
+                border-color: $color-main;
+                color: $color-white;
+              }
+            }
+          }
+        }
+
+      }
+
+      h4 {
+        margin-bottom: 10px;
+      }
+    }
+  }
+}
+
+.ant-modal-content {
+  padding: 0 !important;
+  height: 550px;
+  overflow: auto;
+
+  .ant-modal-header {
+    background: #f5f5f5;
+    padding: 12px;
+    border-bottom: 0.5px solid $color-border;
+    justify-content: center;
+    position: sticky;
+    width: 100%;
+    top: 0;
+    left: 0;
+    z-index: 111;
+    text-align: center;
+    margin-bottom: 0;
+  }
+
+  .ant-modal-close {
+    top: 12px;
+    color: $color-black;
+  }
+
+  .ant-modal-body {
+    padding: 20px;
+  }
+
+  .ant-modal-footer {
+    display: none;
+  }
+}
+
+.filter-box-footer {
+  margin-bottom: 0;
+
+  .ant-form-item-control-input-content {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+  }
+
+  button {
+    height: 36px;
+    padding: 4px 15px;
+    background: none;
+    border: none;
+    outline: none;
+    box-shadow: none;
+    font-weight: 600;
+    text-align: center;
+
+    &.btn-reset {
+      color: $color-main;
+      border: 1px solid $color-main;
+
+      &:hover {
+        background-color: $color-main;
+        color: $color-white;
+        border-color: $color-main;
+      }
+    }
+
+    &.btn-apply {
+      background-color: $color-main !important;
+      color: $color-white;
+      opacity: .5;
+
+      &.active {
+        opacity: 1;
+      }
+    }
+  }
+}

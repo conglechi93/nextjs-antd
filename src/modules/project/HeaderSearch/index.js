@@ -1,9 +1,7 @@
-import React, {useState, useEffect} from 'react';
-import {Select, Input, Button, Modal} from 'antd';
-import {fetchAllCategories} from 'redux/actions/AllCategories';
-import {fetchProvinces} from 'redux/actions/Provinces';
+import React, {useState} from 'react';
+import {Select, Input, Modal} from 'antd';
 import FilterModal from '../FilterModal';
-import {useDispatch, useSelector} from 'react-redux';
+import {useSelector} from 'react-redux';
 import PropTypes from 'prop-types';
 
 const {Search} = Input;
@@ -15,23 +13,33 @@ const HeaderSearch = ({
   setProvinces,
   setSubTypes,
   setCurrentPage,
+  onChangeSearchParam,
 }) => {
   const [modal2Open, setModal2Open] = useState(false);
-  const dispatch = useDispatch();
   const categories = useSelector((state) => state.categories);
   const provinces = useSelector((state) => state.provinces);
-
-  useEffect(() => {
-    dispatch(fetchAllCategories());
-    dispatch(fetchProvinces());
-  }, [dispatch]);
-
   const postTypeFilterCats = categories.categories.postTypeFilterCat ?? [];
   const subTypeFilterCats = categories.categories.realEstateTypeCat ?? [];
   const provincesFilter = provinces.provinces ?? [];
   let postTypeFilterOptions = [];
   let subTypeFilterOptions = [];
   let provincesFilterOptions = [];
+
+  const pricesOption = [
+    {value: '0-0', label: 'Thỏa thuận'},
+    {value: '0-500000000', label: '< 500 triệu'},
+    {value: '500000000-1000000000', label: '500 - 1 tỷ'},
+    {value: '1000000000-2000000000', label: '1 - 2 tỷ'},
+    {value: '2000000000-3000000000', label: '2 - 3 tỷ'},
+    {value: '3000000000-5000000000', label: '3 - 5 tỷ'},
+    {value: '5000000000-7000000000', label: '5 - 7 tỷ'},
+    {value: '7000000000-10000000000', label: '7 - 10 tỷ'},
+    {value: '10000000000-20000000000', label: '10 - 20 tỷ'},
+    {value: '20000000000-50000000000', label: '20 - 50 tỷ'},
+    {value: '50000000000-100000000000', label: '50 - 100 tỷ'},
+    {value: '100000000000-200000000000', label: '100 - 200 tỷ'},
+    {value: '200000000000-500000000000', label: '200 - 500 tỷ'},
+  ];
 
   // Get Value Option Post Type
   postTypeFilterCats.forEach((ele) => {
@@ -43,8 +51,9 @@ const HeaderSearch = ({
   });
 
   //Get Value Option SubTypes
+  const postType = dataObject?.types ?? '';
   subTypeFilterCats.forEach((ele) => {
-    if ('du-an' === ele.parent) {
+    if (postType === ele.parent) {
       let eleSubTypesOption = {
         label: ele.name,
         value: ele.code,
@@ -66,48 +75,31 @@ const HeaderSearch = ({
   const handleOnChangePrice = (e) => {
     const price_from = e.split('-')[0];
     const price_to = e.split('-')[1];
-    const newDataObject = {
-      ...dataObject,
-      priceTo: price_to,
-      priceFrom: price_from,
-    };
-    setDataObject(newDataObject);
+    onChangeSearchParam({priceFrom: price_from, priceTo: price_to});
     setIsReload(true);
   };
 
   // Xử lý thay đổi Loại tin
   const handleOnChangeType = (e) => {
-    const newDataObject = {
-      ...dataObject,
-      types: e,
-    };
+    onChangeSearchParam({types: e});
     setPostType(e);
     setCurrentPage(1);
-    setDataObject(newDataObject);
     setIsReload(true);
   };
 
   // Xử lý thay đổi Sub Type
   const handleOnchangeSubType = (e) => {
-    const newDataObject = {
-      ...dataObject,
-      subTypes: e,
-    };
+    onChangeSearchParam({subTypes: e});
     setSubTypes(e);
     setCurrentPage(1);
-    setDataObject(newDataObject);
     setIsReload(true);
   };
 
   // Xử lý thay đổi Loại Thành phố
   const handleOnChangeProvinces = (e) => {
-    const newDataObject = {
-      ...dataObject,
-      provinces: e,
-    };
+    onChangeSearchParam({provinces: e});
     setProvinces(e);
     setCurrentPage(1);
-    setDataObject(newDataObject);
     setIsReload(true);
   };
 
@@ -119,7 +111,7 @@ const HeaderSearch = ({
             <div className='select box-post-type'>
               <Select
                 onChange={handleOnChangeType}
-                defaultValue='Dự án'
+                defaultValue='Bán'
                 style={{width: 240}}
                 options={postTypeFilterOptions}
               />
@@ -153,21 +145,7 @@ const HeaderSearch = ({
                 onChange={handleOnChangePrice}
                 defaultValue='Khoảng giá'
                 style={{width: 240}}
-                options={[
-                  {value: '0-0', label: 'Thỏa thuận'},
-                  {value: '0-500000000', label: '< 500 triệu'},
-                  {value: '500000000-1000000000', label: '500 - 1 tỷ'},
-                  {value: '1000000000-2000000000', label: '1 - 2 tỷ'},
-                  {value: '2000000000-3000000000', label: '2 - 3 tỷ'},
-                  {value: '3000000000-5000000000', label: '3 - 5 tỷ'},
-                  {value: '5000000000-7000000000', label: '5 - 7 tỷ'},
-                  {value: '7000000000-10000000000', label: '7 - 10 tỷ'},
-                  {value: '10000000000-20000000000', label: '10 - 20 tỷ'},
-                  {value: '20000000000-50000000000', label: '20 - 50 tỷ'},
-                  {value: '50000000000-100000000000', label: '50 - 100 tỷ'},
-                  {value: '100000000000-200000000000', label: '100 - 200 tỷ'},
-                  {value: '200000000000-500000000000', label: '200 - 500 tỷ'},
-                ]}
+                options={pricesOption}
               />
             </div>
             <div
@@ -250,8 +228,14 @@ const HeaderSearch = ({
             open={modal2Open}
             onOk={() => setModal2Open(false)}
             onCancel={() => setModal2Open(false)}
+            width={600}
           >
-            <FilterModal />
+            <FilterModal
+              setModal2Open={setModal2Open}
+              dataObject={dataObject}
+              setDataObject={setDataObject}
+              setIsReload={setIsReload}
+            />
           </Modal>
         </div>
       </div>
@@ -268,4 +252,5 @@ HeaderSearch.propTypes = {
   setProvinces: PropTypes.func,
   setSubTypes: PropTypes.func,
   setCurrentPage: PropTypes.func,
+  onChangeSearchParam: PropTypes.func,
 };

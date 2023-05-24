@@ -1,7 +1,7 @@
-export const fetchProjectForYou = async () => {
+export const fetchDistricts = async (id) => {
   try {
     const res = await fetch(
-      `http://10.79.60.2:8500/vland/posts/projects/recommend`,
+      `http://10.79.60.2:8500/vcat/provinces/${id}/districts`,
     );
     const data = await res.json();
     return data;

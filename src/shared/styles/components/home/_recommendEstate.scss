@@ -1,0 +1,64 @@
+.recommend-estate {
+  &-inner {
+    row-gap: 16px;
+
+    .col-item {
+      &-inner {
+        display: flex;
+        width: 100%;
+        margin: 0 auto;
+        gap: 16px;
+        background-color: $color-white;
+      }
+
+      &-top {
+        width: 35%;
+        flex: none;
+      }
+
+      &-bottom {
+        .fav-btn {
+          right: 2%;
+        }
+
+        h5 {
+          width: 88%;
+          -webkit-line-clamp: 2 !important
+        }
+      }
+    }
+  }
+
+  #scroll-to {
+    margin-top: 22px;
+
+    .main-co {
+      transition: .3s ease;
+      cursor: pointer;
+
+      svg {
+        margin-left: 8px;
+      }
+
+      &:hover {
+        background-color: $color-main;
+
+        path {
+          stroke: $color-white;
+        }
+      }
+    }
+
+    &.hide {
+      display: none;
+    }
+
+    .btn-hide {
+      display: none;
+
+      &.hide {
+        display: block;
+      }
+    }
+  }
+}
