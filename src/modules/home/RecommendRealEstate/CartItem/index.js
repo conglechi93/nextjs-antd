@@ -1,9 +1,10 @@
 import React from 'react';
 import Image from 'next/image';
 import PropTypes from 'prop-types';
+
 const CartItem = (props) => {
   // const item = props.item;
-  const {item} = props;
+  const { item } = props;
   let styleStatus = '';
   if (item.reStatus?.name == 'Sắp mở bán') {
     styleStatus = 'open-sale';
@@ -12,18 +13,18 @@ const CartItem = (props) => {
   } else {
     styleStatus = 'handed-over';
   }
+
   return (
     <>
       <div className='col-item' data-post={item.id} id={item.id}>
         <div className='col-item-inner overflow-hidden position-relative'>
           <div className='col-item-top position-relative'>
-            <a href={item.detailUrl}>
-              <img src={item.thumbnailUrl} alt='' />
+            <a href={`/detailtrade/${item?.id}`}>
+              < img src={item.thumbnailUrl} alt='' />
             </a>
             <div
-              className={`col-item-info col-item-bds position-absolute ${
-                item.postType?.code == 'du-an' ? 'd-none  ' : ''
-              }`}
+              className={`col-item-info col-item-bds position-absolute ${item.postType?.code == 'du-an' ? 'd-none  ' : ''
+                }`}
             >
               <div className='btn btn-ins'>
                 {item.postDate ? item.postDate : ''}
@@ -66,11 +67,10 @@ const CartItem = (props) => {
             <div className='col-item-price d-flex justify-between align-center'>
               <div className='price main-co'>{item.priceText}</div>
               <div
-                className={`info-tab ${
-                  item.postType?.code == 'du-an'
-                    ? styleStatus
-                    : 'd-none handed-over'
-                }`}
+                className={`info-tab ${item.postType?.code == 'du-an'
+                  ? styleStatus
+                  : 'd-none handed-over'
+                  }`}
               >
                 <div className='btn btn-ins'>{item.reStatus?.name}</div>
               </div>
@@ -80,41 +80,36 @@ const CartItem = (props) => {
                 <span>{item.squareText}</span>
               </li>
               <li
-                className={`area ${
-                  item.postType?.code == 'du-an' ? '' : 'd-none'
-                }`}
+                className={`area ${item.postType?.code == 'du-an' ? '' : 'd-none'
+                  }`}
               >
                 <span>
                   {item.totalApartment ? item.totalApartment : '--'} căn
                 </span>
               </li>
               <li
-                className={`area ${
-                  item.postType?.code == 'du-an' ? 'd-none' : ''
-                }`}
+                className={`area ${item.postType?.code == 'du-an' ? 'd-none' : ''
+                  }`}
               >
                 <span>
                   Hướng {item.direction?.name ? item.direction?.name : '--'}
                 </span>
               </li>
               <li
-                className={`area ${
-                  item.postType?.code == 'du-an' ? '' : 'd-none'
-                }`}
+                className={`area ${item.postType?.code == 'du-an' ? '' : 'd-none'
+                  }`}
               >
                 <span>{item.postDate ? item.postDate : '--'}</span>
               </li>
               <li
-                className={`area ${
-                  item.postType?.code == 'du-an' ? 'd-none' : ''
-                }`}
+                className={`area ${item.postType?.code == 'du-an' ? 'd-none' : ''
+                  }`}
               >
                 <span>{item.bedroom ? item.bedroom : '--'} PN</span>
               </li>
               <li
-                className={`area ${
-                  item.postType?.code == 'du-an' ? 'd-none' : ''
-                }`}
+                className={`area ${item.postType?.code == 'du-an' ? 'd-none' : ''
+                  }`}
               >
                 <span>{item.bathroom ? item.bathroom : '--'} WC</span>
               </li>
@@ -140,7 +135,7 @@ const CartItem = (props) => {
             </ul>
           </div>
         </div>
-      </div>
+      </div >
     </>
   );
 };

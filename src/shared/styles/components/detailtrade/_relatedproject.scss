@@ -1,0 +1,72 @@
+.related-project-wrapper {
+    background: #FFFFFF;
+    box-shadow: 0px 1px 4px rgba(22, 21, 21, 0.12);
+    border-radius: 12px;
+    padding: 16px;
+    width: 300px;
+
+    .related-project-image {
+        border-radius: 4px;
+    }
+
+    .related-project-card {
+        padding: 0;
+        margin: 0;
+    }
+
+    .related-project-wrapper-title>p {
+        font-family: 'Inter';
+        font-style: normal;
+        font-weight: 500;
+        font-size: 16px;
+        line-height: 22px;
+        color: #141313;
+    }
+
+    .title-custom {
+        max-width: 300px;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        white-space: nowrap;
+        font-family: 'Inter';
+        font-style: normal;
+        font-weight: 500;
+        font-size: 12px;
+        line-height: 16px;
+        color: #141313;
+    }
+
+    .address-custom {
+        max-width: 450px;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        white-space: nowrap;
+        font-family: 'Inter';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 12px;
+        line-height: 16px;
+        color: #6C6868;
+        padding-top: 8px;
+    }
+
+    .typeRealEstate-text {
+        font-family: 'Inter';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 12px;
+        line-height: 16px;
+        color: #6C6868;
+        padding-top: 8px;
+    }
+
+    .related-project-price {
+        font-family: 'Inter';
+        font-style: normal;
+        font-weight: 500;
+        font-size: 14px;
+        line-height: 20px;
+        color: #D1132A;
+        padding-top: 8px;
+    }
+}
