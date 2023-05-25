@@ -26,7 +26,7 @@ const AdsBannerFirst = () => {
               </p>
             </div>
             <div className='col-row'>
-              <Row gutter={24}>
+              <Row gutter={[16, 16]}>
                 <Col flex={2}>
                   <div className='item'>
                     <img src={VarsIcon.src} alt='Về VARs' />

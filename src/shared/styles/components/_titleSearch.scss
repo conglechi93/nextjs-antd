@@ -30,6 +30,24 @@
   }
 }
 
+.map-title {
+  .view-control-title {
+    margin-bottom: 16px;
+  }
+
+  .view-main {
+    justify-content: flex-end;
+  }
+
+  .view-order {
+    margin: 0;
+
+    .ant-select-selector {
+      padding: 0 !important;
+    }
+  }
+}
+
 .view-main {
   .product-view {
     span {

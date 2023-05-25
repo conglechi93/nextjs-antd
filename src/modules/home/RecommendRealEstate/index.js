@@ -5,6 +5,7 @@ import {Col, Row} from 'antd';
 
 const RecommendRealEstate = () => {
   const [recommenEstate, setRecommenEstate] = useState([]);
+  const [recommenSplice, setRecommenSplice] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [isReload, setIsReload] = useState(true);
   const [className, setClassName] = useState('');
@@ -36,13 +37,15 @@ const RecommendRealEstate = () => {
             <h3 className='mb-0'>BẤT ĐỘNG SẢN DÀNH CHO BẠN</h3>
           </div>
           <div className='recommend-estate-list'>
-            <Row
-              className='recommend-estate-inner'
-              gutter={{xs: 8, sm: 16, md: 16, lg: 16}}
-            >
+            <Row className='recommend-estate-inner' gutter={[16, 16]}>
               {recommenEstate.map((item, index) => {
                 return (
-                  <Col key={index} className='gutter-row' span={12}>
+                  <Col
+                    key={index}
+                    className='gutter-row'
+                    xs={{span: 24}}
+                    md={{span: 12}}
+                  >
                     <CartItem item={item} />
                   </Col>
                 );

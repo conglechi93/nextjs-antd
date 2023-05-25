@@ -4,7 +4,7 @@ import adsImg from '../../../assets/img/banner_quang_cao_1.jpg';
 const AdsBannerSecond = () => {
   return (
     <>
-      <section className='vars-banner-ads mt-24 mb-42'>
+      <section className='vars-banner-ads mb-42'>
         <div className='container'>
           <a href='' target='_blank'>
             <img

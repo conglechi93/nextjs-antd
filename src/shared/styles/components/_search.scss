@@ -1,3 +1,90 @@
+.map-content-row {
+  height: 86vh;
+  width: 100%;
+  margin: 0 !important;
+
+  .gm-style {
+    .gm-style-iw-c {
+      padding: 0 !important;
+    }
+
+    .gm-style-iw-d {
+      overflow: auto !important;
+    }
+  }
+
+  .infoWindow_map {
+    padding: 7px;
+    min-width: 60px;
+    text-align: center;
+    background-color: $color-white;
+    position: relative;
+
+    a {
+      font-size: 12px;
+      line-height: 16px;
+      color: $color-main;
+      font-weight: 600;
+    }
+  }
+
+  .gm-ui-hover-effect {
+    display: none !important;
+  }
+
+  .map-content-left {
+    height: 100%;
+    overflow: auto;
+  }
+
+  .map-content-right {
+    height: 100%;
+    position: relative;
+    padding-right: 0 !important;
+
+    .map-control {
+      &-remove {
+        position: absolute;
+        top: 3rem;
+        bottom: auto;
+        right: 45%;
+        transform: translateY(-50%);
+      }
+
+      &-switch {
+        position: absolute;
+        z-index: 1;
+        right: 22px;
+        bottom: 4rem;
+      }
+
+      .map-btn {
+        margin-top: 10px;
+        padding: 10px;
+        display: flex;
+        text-align: center;
+        cursor: pointer;
+        box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.25);
+        border-radius: 8px;
+        outline: none;
+        height: auto;
+        background-color: $color-white;
+
+        &:hover {
+          border-color: $color-white;
+        }
+
+        &-remove {
+          opacity: 0;
+          visibility: hidden;
+          background-color: $color-main;
+          color: $color-white;
+        }
+      }
+    }
+  }
+}
+
 .action-search {
   border-bottom: 0.5px solid $color-border;
   padding: 16px 0;

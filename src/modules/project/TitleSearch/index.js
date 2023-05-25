@@ -28,8 +28,6 @@ const TitleSearch = ({
     }
   };
 
-  console.log('ss', postType);
-
   useEffect(() => {
     let textTitle = textResult(postType);
     setTypesText(textTitle);

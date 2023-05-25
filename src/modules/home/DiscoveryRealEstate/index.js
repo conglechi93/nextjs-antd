@@ -16,9 +16,9 @@ const DiscoveryRealEstate = () => {
   useEffect(() => {
     const realSplice = realEstate.splice(1, 5);
     setRealSplice(realSplice);
-  }, []);
+  }, [realEstate]);
 
-  console.log(realSplice);
+  console.log('realSplice', realSplice);
   return (
     <>
       <section
@@ -36,7 +36,7 @@ const DiscoveryRealEstate = () => {
             </a>
           </div>
           <div className='discovery-list d-grid'>
-            {realEstate?.map((item, index) => {
+            {realSplice?.map((item, index) => {
               return (
                 <div key={index} className={`item item-${index}`}>
                   <a href='#'>
