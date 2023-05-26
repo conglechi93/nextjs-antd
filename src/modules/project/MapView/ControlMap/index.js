@@ -1,15 +1,15 @@
 import React from 'react';
-import LayerIcon from '../../../assets/icon/icon-layer.png';
-import LocationIcon from '../../../assets/icon/icon-location.png';
-import MinusIcon from '../../../assets/icon/icon-minus.png';
-import PlusIcon from '../../../assets/icon/icon-plus.png';
+import LayerIcon from '../../../../assets/icon/icon-layer.png';
+import LocationIcon from '../../../../assets/icon/icon-location.png';
+import MinusIcon from '../../../../assets/icon/icon-minus.png';
+import PlusIcon from '../../../../assets/icon/icon-plus.png';
 import {Button} from 'antd';
 import PropTypes from 'prop-types';
 
-const ControlMap = ({setLayerMap, setZoomIn, setZoomOut}) => {
-  const onClickLayer = (e) => {
-    setLayerMap(e);
-  };
+const ControlMap = ({setZoomIn, setZoomOut}) => {
+  // const onClickLayer = (e) => {
+  //   setLayerMap(e);
+  // };
   const onClickZoomIn = (e) => {
     setZoomIn(e);
   };
@@ -65,11 +65,7 @@ const ControlMap = ({setLayerMap, setZoomIn, setZoomOut}) => {
               />
             </svg>
           </div>
-          <Button
-            id='layerControl'
-            className='btn map-btn'
-            onClick={onClickLayer}
-          >
+          <Button id='layerControl' className='btn map-btn'>
             <img src={LayerIcon.src} alt='Layer Map' />
           </Button>
           <div className='zoomControl' style={{marginTop: '10px'}}>
@@ -92,7 +88,6 @@ const ControlMap = ({setLayerMap, setZoomIn, setZoomOut}) => {
 
 export default ControlMap;
 ControlMap.propTypes = {
-  setLayerMap: PropTypes.func,
   setZoomIn: PropTypes.func,
   setZoomOut: PropTypes.func,
 };

@@ -23,6 +23,11 @@ const FilterModal = ({
   const [form] = Form.useForm();
   const onReset = () => {
     form.resetFields();
+    console.log('onReset');
+    // form.setFieldsValue({
+    //   realTypes : null,
+    //   provinces: null
+    // });
   };
   const onChangeForm = () => {
     setClassName(true);
@@ -36,7 +41,7 @@ const FilterModal = ({
     <>
       <div className='all-filter'>
         <div className='all-filter--inner'>
-          <Form className='filter-form' onChange={onChangeForm}>
+          <Form form={form} className='filter-form' onChange={onChangeForm}>
             <FormHeader
               setPostType={setPostType}
               dataObject={dataObject}

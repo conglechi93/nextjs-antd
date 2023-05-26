@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import {Checkbox} from 'antd';
+import {Checkbox, Form} from 'antd';
 import {useSelector} from 'react-redux';
 import PropTypes from 'prop-types';
 
@@ -36,13 +36,15 @@ const FormPostType = ({postType, dataObject, setDataObject}) => {
     <>
       <div className='filter-box'>
         <h4>Loại bất động sản</h4>
-        <div className='filter-box-types form-check-group '>
-          <CheckboxGroup
-            className='d-grid grid-template-2 gap-10'
-            options={realTypeOptions}
-            onChange={onChange}
-          />
-        </div>
+        <Form.Item name='realTypes'>
+          <div className='filter-box-types form-check-group '>
+            <CheckboxGroup
+              className='d-grid grid-template-2 gap-10'
+              options={realTypeOptions}
+              onChange={onChange}
+            />
+          </div>
+        </Form.Item>
       </div>
     </>
   );

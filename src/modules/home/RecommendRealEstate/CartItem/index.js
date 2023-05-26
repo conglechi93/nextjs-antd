@@ -38,7 +38,7 @@ const CartItem = (props) => {
             </a>
             <a
               data-issingle='true'
-              data-id='30368'
+              data-id={item.id}
               data-favorite='0'
               className='fav-btn fav-btn position-absolute add-favorite '
               title='Yêu thích'

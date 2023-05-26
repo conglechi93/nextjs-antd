@@ -1,5 +1,4 @@
 export const fetchSearchPolygon = async (dataPolygon) => {
-  console.log('dataPolygon', dataPolygon);
   try {
     const response = await fetch(
       'http://10.79.60.2:8500/vland/posts/search/polygon',
@@ -12,6 +11,8 @@ export const fetchSearchPolygon = async (dataPolygon) => {
       },
     );
     const data = await response.json();
+    console.log('response', response);
+    console.log('data', data);
     return data;
   } catch (error) {
     console.log(error);

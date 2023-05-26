@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {Select, Input, Modal} from 'antd';
+import {Select, Input, Modal, Button} from 'antd';
 import FilterModal from '../FilterModal';
 import {useSelector} from 'react-redux';
 import PropTypes from 'prop-types';
@@ -14,6 +14,7 @@ const HeaderSearch = ({
   setSubTypes,
   setCurrentPage,
   onChangeSearchParam,
+  switchMap,
 }) => {
   const [modal2Open, setModal2Open] = useState(false);
   const categories = useSelector((state) => state.categories);
@@ -107,7 +108,25 @@ const HeaderSearch = ({
     <>
       <div className='action-search'>
         <div className='container'>
-          <div className='search-header d-flex'>
+          <div className='search-header d-flex '>
+            <div className='filter-mb'>
+              <div title='Filter'>
+                <svg
+                  width='24'
+                  height='24'
+                  viewBox='0 0 24 24'
+                  fill='none'
+                  xmlns='http://www.w3.org/2000/svg'
+                >
+                  <path
+                    d='M13.5674 4.89588H2M11.6395 19.355H2M21.2788 19.355H18.8691M11.6393 12.1254H21.2788M2 12.1254H4.40969M15.4953 4.70267C15.4953 4.18791 15.6495 3.68471 15.9384 3.25671C16.2272 2.8287 16.6378 2.49511 17.1182 2.29812C17.5986 2.10113 18.1272 2.04959 18.6371 2.15001C19.1471 2.25044 19.6155 2.49832 19.9832 2.86231C20.3509 3.2263 20.6012 3.69005 20.7027 4.19491C20.8041 4.69978 20.7521 5.22309 20.5531 5.69866C20.3541 6.17424 20.0171 6.58072 19.5848 6.8667C19.1525 7.15269 18.6442 7.30533 18.1242 7.30533C17.427 7.30533 16.7583 7.03112 16.2653 6.54303C15.7723 6.05493 15.4953 5.39294 15.4953 4.70267ZM13.5674 19.4974C13.5674 18.9827 13.7216 18.4795 14.0105 18.0515C14.2993 17.6235 14.7099 17.2899 15.1903 17.0929C15.6707 16.8959 16.1993 16.8444 16.7092 16.9448C17.2192 17.0452 17.6876 17.2931 18.0553 17.6571C18.423 18.0211 18.6733 18.4848 18.7748 18.9897C18.8762 19.4945 18.8242 20.0179 18.6252 20.4934C18.4262 20.969 18.0892 21.3755 17.6569 21.6615C17.2246 21.9475 16.7163 22.1001 16.1963 22.1001C15.4991 22.1001 14.8304 21.8259 14.3374 21.3378C13.8444 20.8497 13.5674 20.1877 13.5674 19.4974ZM9.71141 12.2678C9.71141 11.7531 9.55723 11.2499 9.26835 10.8218C8.97948 10.3938 8.5689 10.0603 8.08852 9.86326C7.60814 9.66627 7.07954 9.61473 6.56958 9.71516C6.05961 9.81558 5.59117 10.0635 5.22351 10.4274C4.85584 10.7914 4.60546 11.2552 4.50402 11.7601C4.40258 12.2649 4.45465 12.7882 4.65362 13.2638C4.8526 13.7394 5.18956 14.1459 5.62189 14.4318C6.05422 14.7178 6.5625 14.8705 7.08246 14.8705C7.7797 14.8705 8.44839 14.5963 8.94141 14.1082C9.43443 13.6201 9.71141 12.9581 9.71141 12.2678Z'
+                    stroke='#6C6868'
+                    strokeWidth='1.5'
+                    strokeLinecap='round'
+                  ></path>
+                </svg>
+              </div>
+            </div>
             <div className='select box-post-type'>
               <Select
                 onChange={handleOnChangeType}
@@ -157,9 +176,8 @@ const HeaderSearch = ({
             <div className='box-views'>
               <div className='box-view-control d-flex align-center'>
                 <div
-                  className='product-view list-product active'
-                  data-view='list-grid'
-                  title='List Grid'
+                  className={`product-view list-product`}
+                  onClick={() => switchMap(false)}
                 >
                   <svg
                     width='24'
@@ -195,8 +213,8 @@ const HeaderSearch = ({
                   </svg>
                 </div>
                 <div
+                  onClick={() => switchMap(true)}
                   className='product-view map-product'
-                  id='view-map-product'
                   data-view='map'
                   title='Map'
                 >
@@ -253,4 +271,5 @@ HeaderSearch.propTypes = {
   setSubTypes: PropTypes.func,
   setCurrentPage: PropTypes.func,
   onChangeSearchParam: PropTypes.func,
+  switchMap: PropTypes.func,
 };

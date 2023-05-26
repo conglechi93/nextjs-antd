@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import {Select} from 'antd';
+import {Form, Select} from 'antd';
 import {useSelector} from 'react-redux';
 import {fetchDistricts} from 'pages/api/districts';
 import {fetchWards} from 'pages/api/wards';
@@ -94,16 +94,19 @@ const FormLocation = ({dataObject, setDataObject}) => {
       <div className='filter-box'>
         <h4>Khu vực</h4>
         <div className='filter-box-location form-check-group d-grid grid-template-2 gap-20'>
-          <Select
-            mode='multiple'
-            allowClear
-            style={{
-              width: '100%',
-            }}
-            placeholder='Chọn khu vực'
-            onChange={handleChangeCity}
-            options={provincesOptions}
-          />
+          <Form.Item name='provinces'>
+            <Select
+              mode='multiple'
+              allowClear
+              style={{
+                width: '100%',
+              }}
+              placeholder='Chọn khu vực'
+              onChange={handleChangeCity}
+              options={provincesOptions}
+            />
+          </Form.Item>
+
           <Select
             mode='multiple'
             allowClear

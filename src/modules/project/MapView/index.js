@@ -1,45 +1,21 @@
-import React, {useState, useEffect} from 'react';
-import Head from 'next/head';
-import HeaderSearch from 'modules/project/HeaderSearch';
-import TitleMap from './TitleMap';
 import {Col, Row} from 'antd';
-import {Loader} from '@googlemaps/js-api-loader';
-import {fetchSearchPolygon} from 'pages/api/searchPolygon';
+import React, {useState, useEffect} from 'react';
+import NoResult from '../NoResult';
 import CartItem from 'modules/home/RecommendRealEstate/CartItem';
-import NoResult from 'modules/project/NoResult';
-import MapIcon from '../../assets/icon/marker-highlight.png';
 import ControlMap from './ControlMap';
+import {Loader} from '@googlemaps/js-api-loader';
+import PropTypes from 'prop-types';
+import {fetchSearchPolygon} from 'pages/api/searchPolygon';
+import TitleMap from './TitleMap';
 
-const Map = () => {
+const MapView = ({dataObject, setDataObject}) => {
   const [itemPost, setItemPost] = useState([]);
   const [total, setTotal] = useState(0);
   const [map, setMap] = useState(null);
-  const [infoWindow, setInfoWindow] = useState(null);
   const [layerMap, setLayerMap] = useState('satellite');
   const [zoomIn, setZoomIn] = useState(null);
   const [zoomOut, setZoomOut] = useState(null);
-  const [dataSearch, setDataSearch] = useState({
-    polygon: '',
-    page: 1,
-    types: 'bds-ban',
-    subTypes: '',
-    provinces: '',
-    districts: '',
-    wards: '',
-    priceFrom: '',
-    priceTo: '',
-    areaFrom: '',
-    areaTo: '',
-    directions: '',
-    bedrooms: '',
-    investors: '',
-    postBy: '',
-    projects: '',
-    searchText: '',
-    sortBy: 'newest',
-    pageSize: 12,
-  });
-
+  const [infoWindow, setInfoWindow] = useState(null);
   const loader = new Loader({
     apiKey: 'AIzaSyCZbkt0uy-5llZmpZJUTUDcknoqgBz7a50',
     version: 'weekly',
@@ -59,7 +35,6 @@ const Map = () => {
     disableDoubleClickZoom: true,
     mapTypeId: 'satellite',
   };
-
   useEffect(() => {
     loader
       .load()
@@ -85,7 +60,6 @@ const Map = () => {
         // do something
       });
   }, []);
-
   function initFitAllBounds(bounds) {
     let NE = bounds.getNorthEast();
     let SW = bounds.getSouthWest();
@@ -98,19 +72,18 @@ const Map = () => {
       {lat: SE.lat(), lng: SE.lng()},
       {lat: NE.lat(), lng: NE.lng()},
     ];
-    setDataSearch(polygons);
+    setDataObject(polygons);
   }
-
   useEffect(() => {
     const fetchAPI = async () => {
-      const resultData = await fetchSearchPolygon(dataSearch);
-      const itemPost = resultData?.data?.elements ?? [];
-      setItemPost(itemPost);
+      const resultData = await fetchSearchPolygon(dataObject);
+      const item = resultData?.data?.elements ?? [];
+      setItemPost(item);
       const total = resultData?.data?.total ?? 0;
       setTotal(total);
     };
     fetchAPI();
-  }, [dataSearch]);
+  }, [dataObject]);
 
   useEffect(() => {
     const markers = [];
@@ -148,29 +121,9 @@ const Map = () => {
       markers.push(marker);
     }
   }, [itemPost]);
-
-  // useEffect(() => {
-  //   console.log(map.getMapTypeId());
-  //   map.getMapTypeId() === 'satellite'
-  //     ? map.setMapTypeId('roadmap')
-  //     : map.setMapTypeId('satellite');
-  // }, [layerMap]);
-
-  // useEffect(() => {
-  //   map.setZoom(map.getZoom() - 1);
-  // }, [zoomIn]);
-
-  // useEffect(() => {
-  //   map.setZoom(map.getZoom() + 1);
-  // }, [zoomOut]);
-
   return (
     <>
-      <Head>
-        <title>Vars - Bất động sản</title>
-      </Head>
       <div className='map-search'>
-        <HeaderSearch />
         <div className='map-content'>
           <Row gutter={26} className='map-content-row'>
             <Col span={8} className='map-content-left'>
@@ -200,7 +153,7 @@ const Map = () => {
                 style={{width: '100%', height: '100%'}}
               ></div>
               <ControlMap
-                setLayerMap={setLayerMap}
+                layerMap={layerMap}
                 setZoomOut={setZoomOut}
                 setZoomIn={setZoomIn}
               />
@@ -212,4 +165,8 @@ const Map = () => {
   );
 };
 
-export default Map;
+export default MapView;
+MapView.propTypes = {
+  dataObject: PropTypes.any,
+  setDataObject: PropTypes.func,
+};

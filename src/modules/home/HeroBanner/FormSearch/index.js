@@ -34,19 +34,19 @@ const FormSearch = () => {
 
   useEffect(() => {
     setSubTypes(realEstateTypeCat);
-  }, []);
+  }, [realEstateTypeCat]);
 
   useEffect(() => {
     setPostType(postTypeFilterCat);
-  }, []);
+  }, [postTypeFilterCat]);
 
   useEffect(() => {
     setDirections(realDirectionCat);
-  }, []);
+  }, [realDirectionCat]);
 
   useEffect(() => {
     setCities(provincesFilter);
-  }, []);
+  }, [provincesFilter]);
 
   // Call Api District
   useEffect(() => {

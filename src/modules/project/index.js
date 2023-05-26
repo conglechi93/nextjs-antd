@@ -9,6 +9,7 @@ import Paginations from './Paginations';
 import {fetchAllCategories} from 'redux/actions/AllCategories';
 import {fetchProvinces} from 'redux/actions/Provinces';
 import {useDispatch} from 'react-redux';
+import MapView from './MapView';
 
 const Project = () => {
   const [classNameActive, setClassNameActive] = useState(true);
@@ -18,6 +19,7 @@ const Project = () => {
   const [postType, setPostType] = useState('');
   const [subTypes, setSubTypes] = useState('');
   const [provinces, setProvinces] = useState('');
+  const [switchMap, setSwitchMap] = useState(false);
   const [isReload, setIsReload] = useState(true);
   const [dataObject, setDataObject] = useState({
     page: 1,
@@ -47,6 +49,16 @@ const Project = () => {
   }, []);
 
   useEffect(() => {
+    if (switchMap) {
+      const newDataObject = {
+        ...dataObject,
+        polygon: '',
+      };
+      setDataObject(newDataObject);
+    }
+  }, []);
+
+  useEffect(() => {
     const fetchAPI = async () => {
       const resultData = await fetchSearchPost(dataObject);
       const itemPost = resultData?.data?.elements ?? [];
@@ -60,6 +72,7 @@ const Project = () => {
     }
   }, [isReload]);
 
+  console.log('switchMap', switchMap);
   // Handle On Change Params
   const onChangeSearchParam = (objectParams) => {
     const newDataObject = {
@@ -68,10 +81,13 @@ const Project = () => {
     };
     setDataObject(newDataObject);
   };
-
   return (
     <>
-      <div className={`search ${classNameActive ? 'active' : ''}`}>
+      <div
+        className={`search ${classNameActive ? 'active' : ''} ${
+          switchMap ? 'swich-map' : 'swich-post'
+        }`}
+      >
         <Head>
           <title>Vars - Bất động sản</title>
         </Head>
@@ -84,39 +100,52 @@ const Project = () => {
           setProvinces={setProvinces}
           setSubTypes={setSubTypes}
           setCurrentPage={setCurrentPage}
+          switchMap={setSwitchMap}
         />
-        <Breadcrumbs />
-        <div
-          className={`title-view-control ${
-            classNameActive ? 'layout-grid' : 'layout-list'
-          }`}
-        >
-          <TitleSearch
-            postType={postType}
-            provinces={provinces}
-            subTypes={subTypes}
-            dataObject={dataObject}
-            setDataObject={setDataObject}
-            total={total}
-            classNameActive={setClassNameActive}
-            setIsReload={setIsReload}
-          />
-        </div>
-        <div
-          className={`load-item-taxonomy ${
-            classNameActive ? 'layout-grid' : 'layout-list'
-          }`}
-        >
-          <BoxItem itemPost={itemPost} />
-        </div>
-        <Paginations
-          dataObject={dataObject}
-          setDataObject={setDataObject}
-          total={total}
-          currentPage={currentPage}
-          setCurrentPage={setCurrentPage}
-          setIsReload={setIsReload}
-        />
+        {switchMap ? (
+          <>
+            <MapView
+              dataObject={dataObject}
+              setDataObject={setDataObject}
+              classNameActive={setClassNameActive}
+            />
+          </>
+        ) : (
+          <>
+            <Breadcrumbs />
+            <div
+              className={`title-view-control ${
+                classNameActive ? 'layout-grid' : 'layout-list'
+              }`}
+            >
+              <TitleSearch
+                postType={postType}
+                provinces={provinces}
+                subTypes={subTypes}
+                dataObject={dataObject}
+                setDataObject={setDataObject}
+                total={total}
+                classNameActive={setClassNameActive}
+                setIsReload={setIsReload}
+              />
+            </div>
+            <div
+              className={`load-item-taxonomy ${
+                classNameActive ? 'layout-grid' : 'layout-list'
+              }`}
+            >
+              <BoxItem itemPost={itemPost} />
+            </div>
+            <Paginations
+              dataObject={dataObject}
+              setDataObject={setDataObject}
+              total={total}
+              currentPage={currentPage}
+              setCurrentPage={setCurrentPage}
+              setIsReload={setIsReload}
+            />
+          </>
+        )}
       </div>
     </>
   );

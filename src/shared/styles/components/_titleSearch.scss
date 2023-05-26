@@ -68,6 +68,26 @@
   }
 }
 
+.swich-map {
+  .map-product {
+    background-color: #fbf0f2 !important;
+
+    path {
+      fill: $color-main;
+    }
+  }
+}
+
+.swich-post {
+  .list-product {
+    background-color: #fbf0f2 !important;
+
+    path {
+      fill: $color-main;
+    }
+  }
+}
+
 .title-view-control {
   &.layout-grid {
     .view-grid {
